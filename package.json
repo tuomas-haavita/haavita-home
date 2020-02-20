@@ -15,7 +15,7 @@
     "clean": "rimraf dist/{css/*,js/*,images/*}",
     "autoprefixer": "postcss -u autoprefixer -r dist/css/*",
     "cp-html": "cp index.html dist/index.html",
-    "postprocess-html": "sed -i 's:dist/css/style.css:css/style.css:g;s:dist/js/main.min.js:js/main.min.js:g' dist/index.html && rm -rf dist/index.html.bak",
+    "postprocess-html": "sed -i 's:dist/css/style.css:css/style.css:g;s:dist/js/main.min.js:js/main.min.js:g;s:dist/images:images:g;' dist/index.html && rm -rf dist/index.html.bak",
     "scss": "node-sass --output-style compressed -o dist/css src/scss",
     "lint": "eslint src/js || true",
     "lint-scss": "stylelint src/scss/*.scss --syntax scss || true",
