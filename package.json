@@ -14,6 +14,8 @@
   "scripts": {
     "clean": "rimraf dist/{css/*,js/*,images/*}",
     "autoprefixer": "postcss -u autoprefixer -r dist/css/*",
+    "cp-html": "cp index.html dist/index.html",
+    "postprocess-html": "sed -i 's:dist/css/style.css:css/style.css:g;s:dist/js/main.min.js:js/main.min.js:g' dist/index.html && rm -rf dist/index.html.bak",
     "scss": "node-sass --output-style compressed -o dist/css src/scss",
     "lint": "eslint src/js || true",
     "lint-scss": "stylelint src/scss/*.scss --syntax scss || true",
@@ -23,7 +25,7 @@
     "build:css": "run-s lint-scss scss autoprefixer",
     "build:js": "run-s lint uglify",
     "build:images": "run-s imagemin",
-    "build": "run-s build:*",
+    "build": "run-s build:* cp-html postprocess-html",
     "watch:css": "onchange \"src/scss\" -- run-s build:css",
     "watch:js": "onchange \"src/js\" -- run-s build:js",
     "watch:images": "onchange \"src/images\" -- run-s build:images",
